@@ -43,7 +43,7 @@
             divisione = new Button();
             moltiplicazione = new Button();
             sottrazione = new Button();
-            num = new Label();
+            lblFinestra = new Label();
             ac = new Button();
             SuspendLayout();
             // 
@@ -197,14 +197,14 @@
             sottrazione.UseVisualStyleBackColor = true;
             sottrazione.Click += sottrazione_Click;
             // 
-            // num
+            // lblFinestra
             // 
-            num.AutoSize = true;
-            num.Location = new Point(255, 100);
-            num.MinimumSize = new Size(180, 20);
-            num.Name = "num";
-            num.Size = new Size(180, 20);
-            num.TabIndex = 15;
+            lblFinestra.AutoSize = true;
+            lblFinestra.Location = new Point(255, 100);
+            lblFinestra.MinimumSize = new Size(180, 20);
+            lblFinestra.Name = "lblFinestra";
+            lblFinestra.Size = new Size(180, 20);
+            lblFinestra.TabIndex = 15;
             // 
             // ac
             // 
@@ -222,7 +222,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(ac);
-            Controls.Add(num);
+            Controls.Add(lblFinestra);
             Controls.Add(sottrazione);
             Controls.Add(moltiplicazione);
             Controls.Add(divisione);
@@ -261,7 +261,7 @@
         private Button divisione;
         private Button moltiplicazione;
         private Button sottrazione;
-        private Label num;
+        private Label lblFinestra;
         private Button ac;
     }
 }

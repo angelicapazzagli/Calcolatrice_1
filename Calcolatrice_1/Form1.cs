@@ -1,3 +1,5 @@
+using System.Linq.Expressions;
+
 namespace Calcolatrice_1
 {
     public partial class Form1 : Form
@@ -7,159 +9,165 @@ namespace Calcolatrice_1
             InitializeComponent();
         }
         string numero;
+        float ris;
 
         private void button14_Click(object sender, EventArgs e)
         {
             numero += "*";
-            num.Text = numero;
+            lblFinestra.Text += "*";
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             numero += "1";
-            num.Text = numero;
+            lblFinestra.Text += "1";
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             numero += "2";
-            num.Text = numero;
+            lblFinestra.Text += "2";
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             numero += "3";
-            num.Text = numero;
+            lblFinestra.Text += "3";
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             numero += "4";
-            num.Text = numero;
+            lblFinestra.Text += "4";
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             numero += "5";
-            num.Text = numero;
+            lblFinestra.Text += "5";
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
             numero += "6";
-            num.Text = numero;
+            lblFinestra.Text += "6";
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
             numero += "7";
-            num.Text = numero;
+            lblFinestra.Text += "7";
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
             numero += "8";
-            num.Text = numero;
+            lblFinestra.Text += "8";
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
             numero += "9";
-            num.Text = numero;
+            lblFinestra.Text += "9";
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
             numero += "0";
-            num.Text = numero;
+            lblFinestra.Text += "0";
         }
 
         private void addizione_Click(object sender, EventArgs e)
         {
             numero += "+";
-            num.Text = numero;
+            lblFinestra.Text += "+";
         }
 
         private void sottrazione_Click(object sender, EventArgs e)
         {
             numero += "-";
-            num.Text = numero;
+            lblFinestra.Text += "-";
         }
 
         private void divisione_Click(object sender, EventArgs e)
         {
             numero += "/";
-            num.Text = numero;
+            lblFinestra.Text += "/";
         }
 
         private void risultato_Click(object sender, EventArgs e)
         {
-            string cifre = "0123456789", primo = "";
-            float op = 0, ris = 0;
-            char operazione = '+';
+            float ris = 0;
+            float num_ope = 0;
+            char ope = '+';
+            string numero = "";
+            string num_cifre = "0123456789";
+
             for (int i = 0; i < numero.Length; i++)
             {
                 char c = numero[i];
-                if (cifre.Contains(c))
+
+                if (num_cifre.Contains(c))
                 {
-                    primo += c;
+                    numero += c;
                 }
+
                 if (c == '+' || c == '-' || c == '*' || c == '/')
                 {
-                    int primo_i = Int32.Parse(primo);
-                    primo = "";
-                    if (operazione == '*')
+                    int n = Int32.Parse(numero);
+                    numero = "";
+
+                    if (n == '*')
                     {
-                        op *= primo_i;
+                        num_ope *= n;
                     }
-                    else if (operazione == '/')
+                    else if (ope == '/')
                     {
-                        op /= primo_i;
+                        num_ope /= n;
                     }
-                    else if (operazione == '+')
+                    else if (ope == '+')
                     {
-                        ris += op;
-                        op += primo_i;
+                        ris += num_ope;
+                        num_ope = n;
                     }
-                    else if (operazione == '-')
+                    else if (ope == '-')
                     {
-                        ris -= op;
-                        op -= primo_i;
+                        ris += num_ope;
+                        num_ope = -n;
                     }
-                    operazione = c;
+                    ope = c;
                 }
-                if (primo != "")
-                {
-                    int primo_i = Int32.Parse(primo);
-                    if (operazione == '*')
-                    {
-                        op *= primo_i;
-                    }
-                    else if (operazione == '/')
-                    {
-                        op /= primo_i;
-                    }
-                    else if (operazione == '+')
-                    {
-                        ris += op;
-                        op += primo_i;
-                    }
-                    else if (operazione == '-')
-                    {
-                        ris -= op;
-                        op -= primo_i;
-                    }
-                    operazione = c;
-                }
-                ris += op;
-                num.Text = ris.ToString();
-                numero = ris.ToString();
             }
+            if (numero != "")
+            {
+                int n = Int32.Parse(numero);
+                if (ope == '*')
+                {
+                    num_ope *= n;
+                }
+                else if (ope == '/')
+                {
+                    num_ope /= n;
+                }
+                else if (ope == '+')
+                {
+                    ris += num_ope;
+                    num_ope = n;
+                }
+                else if (ope == '-')
+                {
+                    ris += num_ope;
+                    num_ope = -n;
+                }
+            }
+            ris += num_ope;
+            lblFinestra.Text = ris.ToString();
+            numero = ris.ToString();
         }
 
         private void ac_Click(object sender, EventArgs e)
         {
-            num.Text = "";
+            lblFinestra.Text = "";
             numero = "";
         }
     }
